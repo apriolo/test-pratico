@@ -1,0 +1,4 @@
+services:
+#    company.example:
+#        class: Arca\CompanyBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
