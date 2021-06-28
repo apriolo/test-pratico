@@ -1,0 +1,23 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+    {% block stylesheets %}
+        {{ parent() }}
+        <link rel="stylesheet" href="{{ asset('bundles/user/css/login.css') }}" />
+    {% endblock %}
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            {% if error %}
+                <div>{{ error.message }}</div>
+            {% endif %}
+            <form action="{{ path('login_check') }}" method="post">
+                <input type="text" id="username" class="fadeIn second" name="_username" placeholder="login" value="{{ last_username }}">
+                <input type="text" id="password" class="fadeIn third" name="_password" placeholder="password">
+                <input type="submit" class="fadeIn fourth" value="Log In">
+            </form>
+
+            <div id="formFooter">
+                <a class="underlineHover" href="{{ path('user_register') }}">New User? Register here</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

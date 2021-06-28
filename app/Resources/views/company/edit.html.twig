@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="form-group">
+            <div class="row justify-content-center">
+                <h1 class="text-center">Editing Company</h1>
+            </div>
+
+            {# Para criar os atributos indepedentes #}
+            {{ form_start(edit_form) }}
+            {% if error %}
+                <div>{{ error.message }}</div>
+            {% endif %}
+            <div class="row">
+                <div class="col-md-4">
+                    {{ form_errors(edit_form.title) }}
+                    {{ form_row(edit_form.title, {
+                        'attr': {'class': 'form-control'},
+                    }) }}
+                </div>
+
+                <div class="col-md-4">
+                    {{ form_row(edit_form.telephone, {
+                        'attr': {'class': 'form-control'},
+                    }) }}
+                </div>
+
+                <div class="col-md-4">
+                    {{ form_row(edit_form.postalcode, {
+                        'attr': {'class': 'form-control'},
+                    }) }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    {{ form_row(edit_form.address, {
+                        'attr': {'class': 'form-control'},
+                    }) }}
+                </div>
+
+                <div class="col-md-4">
+                    {{ form_row(edit_form.city, {
+                        'attr': {'class': 'form-control'},
+                    }) }}
+                </div>
+
+                <div class="col-md-4">
+                    {{ form_row(edit_form.state, {
+                        'attr': {'class': 'form-control'},
+                    }) }}
+                </div>
+            </div>
+
+            <div class="awesome-username-wrapper">
+                {{ form_row(edit_form.description, {
+                    'attr': {'class': 'form-control'},
+                }) }}
+            </div>
+            <div class="row justify-content-center mt-2 ml-2" style="overflow-y: scroll; height: 100px;width: 98%; background-color: #E5E5E4">
+                {% for cat in edit_form.categories %}
+                    <div class="col-md-12 form-check">
+                        {{ form_widget(cat) }}
+                        {{ form_label(cat) }}
+                    </div>
+                {% endfor %}
+            </div>
+            {{ form_errors(edit_form) }}
+        </div>
+
+        <div class="row justify-content-center">
+            <a href="{{ path('index_search') }}" class="btn btn-secondary ml-2" role="button" aria-pressed="true">Back To Search</a>
+            <input type="submit" value="Edit" class="btn btn-primary ml-2">
+            {{ form_end(edit_form) }}
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete" class="btn btn-danger ml-2">
+            {{ form_end(delete_form) }}
+        </div>
+    </div>
+{% endblock %}

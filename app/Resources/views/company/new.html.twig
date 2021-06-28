@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <h1 class="text-center">Register a New Company</h1>
+        </div>
+        <form>
+            <div class="form-group">
+                {# Para criar os atributos indepedentes #}
+                <div class="row">
+                    <div class="col-md-4">
+                        {{ form_errors(form.title) }}
+                        {{ form_row(form.title, {
+                            'attr': {'class': 'form-control'},
+                        }) }}
+                    </div>
+
+                    <div class="col-md-4">
+                        {{ form_row(form.telephone, {
+                            'attr': {'class': 'form-control'},
+                        }) }}
+                    </div>
+
+                    <div class="col-md-4">
+                        {{ form_row(form.postalcode, {
+                            'attr': {'class': 'form-control'},
+                        }) }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        {{ form_row(form.address, {
+                            'attr': {'class': 'form-control'},
+                        }) }}
+                    </div>
+
+                    <div class="col-md-4">
+                        {{ form_row(form.city, {
+                            'attr': {'class': 'form-control'},
+                        }) }}
+                    </div>
+
+                    <div class="col-md-4">
+                        {{ form_row(form.state, {
+                            'attr': {'class': 'form-control'},
+                        }) }}
+                    </div>
+                </div>
+
+                <div class="awesome-username-wrapper">
+                    {{ form_row(form.description, {
+                        'attr': {'class': 'form-control'},
+                    }) }}
+                </div>
+
+                {{ form_errors(form) }}
+                <h3>Tags</h3>
+                <div class="row justify-content-center mt-2 ml-2" style="overflow-y: scroll; height: 100px;width: 98%; background-color: #E5E5E4">
+                    {% for cat in form.categories %}
+                        <div class="col-md-12 form-check">
+                            {{ form_widget(cat) }}
+                            {{ form_label(cat) }}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <input type="submit" value="Register" class="btn btn-primary">
+                <a href="{{ path('index_search') }}" class="btn btn-secondary ml-2" role="button" aria-pressed="true">Back To Search</a>
+            </div>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,36 @@
+# To get started with security, check out the documentation:
+# https://symfony.com/doc/current/security.html
+security:
+    encoders:
+        Arca\UserBundle\Entity\User: bcrypt
+
+    # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+    providers:
+        our_database_users:
+            entity: { class: UserBundle:User, property: username }
+
+
+        # o firewall é a parte responsavel pela autenticação dentro da aplicação
+    firewalls:
+        secured_area:
+            pattern: ^/
+            form_login:
+                # As rotas de formulario de login e check login dentro de UserBundle/Controller/EventController
+                check_path: login_check
+                login_path: login_form
+            logout:
+                path: logout
+                target: company_index
+            ## Para permitir o acesso anonimo na aplicação, não é necessario fazer login
+            anonymous: ~
+            #http_basic:
+            #    realm: "Secured Demo Area"
+    access_control:
+        # Acesso apenas logado em todas a pagnas menos a de registor e login
+        # junto aos arquivos que precisam estar publicos ,css js images
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/(css|js), roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/(_wdt|_profiler), roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /company/searchindex, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/company, roles: ROLE_USER }

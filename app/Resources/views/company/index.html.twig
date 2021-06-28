@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="col-md-12">
+        <h1 class="text-center">Companies list</h1>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th>Title</th>
+                <th>Telephone</th>
+                <th>Address</th>
+                <th>Postalcode</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for company in companies %}
+                <tr>
+                    <th><a href="{{ path('company_show', { 'id': company.id }) }}">{{ company.id }}</a></th>
+                    <td>{{ company.title }}</td>
+                    <td>{{ company.telephone }}</td>
+                    <td>{{ company.address }}</td>
+                    <td>{{ company.postalcode }}</td>
+                    <td>{{ company.city }}</td>
+                    <td>{{ company.state }}</td>
+                    <td>{{ company.description }}</td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('company_show', { 'id': company.id }) }}">show</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('company_edit', { 'id': company.id }) }}">edit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
