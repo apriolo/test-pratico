@@ -40,8 +40,6 @@ class CompanyType extends AbstractType
                     'choice_label' => 'title',
                     'multiple' => true,
                     'expanded' => true,
-//                    'label_attr' => ['class' => 'form-check-label'],
-//                    'attr' => ['class' => 'form-check-input mr-4']
                 ]
             );
     }
