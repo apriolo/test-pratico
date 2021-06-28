@@ -3,13 +3,16 @@
 namespace Arca\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * User
  *
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="Arca\UserBundle\Repository\UserRepository")
+ * @UniqueEntity("email","username")
  */
 class User implements UserInterface
 {
@@ -24,13 +27,15 @@ class User implements UserInterface
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="username", type="string", length=255)
+     * @Assert\NotBlank(message="Username is empty")
+     * @ORM\Column(name="username", type="string", length=255, unique=true)
      */
     private $username;
 
     /**
-     * @ORM\Column (name="email", type="string", length=255)
+     * @ORM\Column (name="email", type="string", length=255, unique=true)
+     * @Assert\NotBlank(message="Email is empty")
+     * @Assert\Email()
      */
     private $email;
 
@@ -42,7 +47,7 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\Column (type="json_array")
+     * @ORM\Column (name="roles", type="json_array")
      */
     private $roles = [];
 
@@ -144,7 +149,6 @@ class User implements UserInterface
     public function setRoles(array $roles)
     {
         $this->roles = $roles;
-        // allows for chaining
         return $this;
     }
 

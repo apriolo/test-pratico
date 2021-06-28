@@ -38,9 +38,6 @@ class RegisterController extends Controller
             $em->persist($user);
             $em->flush();
 
-            //Adding a flash message of success register
-            $request->getSession()->getFlashBag()->add('success', 'Welcome to the Death Star, have a magical day!');
-
             // Fazendo o login do usuario cadastrado
             $this->authenticateUser($user);
 
@@ -51,7 +48,7 @@ class RegisterController extends Controller
         
     }
 
-    // Função para usar o btcrypt de salvr senhas criptografas
+    // Função para usar o btcrypt de salvar senhas criptografas
     private function encodePassword(User $user, $plaiPassword)
     {
         $encoder = $this->container->get('security.encoder_factory')->getEncoder($user);
