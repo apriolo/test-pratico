@@ -28,7 +28,7 @@ class User implements UserInterface
     /**
      * @var string
      * @Assert\NotBlank(message="Username is empty")
-     * @ORM\Column(name="username", type="string", length=255, unique=true)
+     * @ORM\Column(name="username", type="string", length=255)
      */
     private $username;
 

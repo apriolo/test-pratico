@@ -7,7 +7,7 @@ security:
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
         our_database_users:
-            entity: { class: UserBundle:User, property: username }
+            entity: { class: UserBundle:User }
 
 
         # o firewall é a parte responsavel pela autenticação dentro da aplicação
