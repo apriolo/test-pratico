@@ -12,9 +12,6 @@
 
             {# Para criar os atributos indepedentes #}
             {{ form_start(edit_form) }}
-            {% if error %}
-                <div>{{ error.message }}</div>
-            {% endif %}
             <div class="row">
                 <div class="col-md-4">
                     {{ form_errors(edit_form.title) }}
